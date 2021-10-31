@@ -16,7 +16,7 @@ function SideNavBar() {
                         <div className="navBar" style={{}}>
                             <button onClick={event => {setOpen(false)}}>&times;</button>
                             <a href="/">Home</a>
-                            <a href="/start">Start</a>
+                            <a href="/start">Transactions</a>
                             <a href="/account">Account</a>
                         </div>
                     </div>

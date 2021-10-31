@@ -26,7 +26,7 @@ const Landing = ()=>{
                        
                        
                         <div id='signInBtn'>
-                            <div  className="g-signin2"   data-onsuccess="onSignIn">
+                            <div  className="g-signin2" data-onsuccess="onSignIn">
                                 
                             </div>
                         </div>

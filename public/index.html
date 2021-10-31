@@ -5,26 +5,31 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta name="google-signin-client_id" content="860817227215-rut38fjeqviv7d44bgj2lnjiu8nd1gkv.apps.googleusercontent.com">
-
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="860817227215-0o3vi9p795m3fonk0hcfrmphvv71tbus.apps.googleusercontent.com">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
     <script>
       function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-       
-        alert('Signed in as '+profile.getName())
+          var id_token = googleUser.getAuthResponse().id_token;
 
-        document.getElementById('signOut').addEventListener('click',signOut)
+          
+          redirAndSend(id_token);
+       
+      }
+      function onLoad(){
+        gapi.load('auth2', function() {
+          gapi.auth2.init();
+        });
       }
 
 
-  function signOut() {
-    
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      alert('Signed out successfully.');
-    });
-  }
+      function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.disconnect()
+        auth2.signOut().then(function () {
+          location.href = "http://localhost:3000"
+        });
+      }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta
@@ -61,6 +66,24 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+  <script>
+    
 
+    async function redirAndSend(token){
+      const response = await fetch(`http://127.0.0.1:5000/testPage`, {
+            method: "GET",
+
+            headers: {
+                'data':token
+            }
+            
+          
+        })
+
+        const data = await response.json()
+        location.href = `home?auth=${token}`
+        
+    }
+  </script>
   </body>
 </html>
