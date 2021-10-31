@@ -29,7 +29,7 @@ async function getUserDetails(token){
     .then(res => {
         if (res.status >= 400) {
           window.localStorage.removeItem('id_token');
-          window.location.href = "http://localhost:3000/"
+          window.location.href = "https://incash.netlify.app/"
         }
         return res.json();
       })
@@ -51,7 +51,7 @@ useEffect(()=>{
         
       
         
-          window.location.href = "http://localhost:3000/"
+          window.location.href = "https://incash.netlify.app/"
           return
       }else{
       var localToken = window.localStorage.getItem('id_token');
@@ -63,7 +63,7 @@ useEffect(()=>{
       
     }else{
       window.localStorage.setItem('id_token',token)
-      window.location.href = "http://localhost:3000/home"
+      window.location.href = "https://incash.netlify.app/home"
     }
     
   },[])

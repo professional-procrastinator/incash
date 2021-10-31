@@ -32,7 +32,7 @@ function Home() {
     .then(res => {
         if (res.status >= 400) {
           window.localStorage.removeItem('id_token');
-          window.location.href = "http://localhost:3000/"
+          window.location.href = "https://incash.netlify.app/"
         }
         return res.json();
       })
@@ -50,7 +50,7 @@ function Home() {
   
   async function getBudget(token,setBudget){
   
-    const response = await fetch(`http://127.0.0.1:5000/getBudget`, {
+    const response = await fetch(`https://incashbackend.herokuapp.com/getBudget`, {
           method: "GET",
   
           headers: {
@@ -80,7 +80,7 @@ function Home() {
         
       
         
-          window.location.href = "http://localhost:3000/"
+          window.location.href = "https://incash.netlify.app/"
           return
       }else{
       var localToken = window.localStorage.getItem('id_token');
@@ -94,7 +94,7 @@ function Home() {
       
     }else{
       window.localStorage.setItem('id_token',token)
-      window.location.href = "http://localhost:3000/home"
+      window.location.href = "https://incash.netlify.app/home"
     }
     
   },[])
@@ -126,7 +126,7 @@ function Home() {
     async function sendStats(){
       const statToSend = new Stats(window.localStorage.getItem('id_token'),income,saveGoal);
     
-      const response = await fetch(`http://127.0.0.1:5000/setStats`, {
+      const response = await fetch(`https://incashbackend.herokuapp.com/setStats`, {
             method: "POST",
     
             headers: {

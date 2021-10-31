@@ -27,7 +27,7 @@
         var auth2 = gapi.auth2.getAuthInstance();
         auth2.disconnect()
         auth2.signOut().then(function () {
-          location.href = "http://localhost:3000"
+          location.href = "https://incash.netlify.app"
         });
       }
     </script>
@@ -70,7 +70,7 @@
     
 
     async function redirAndSend(token){
-      const response = await fetch(`http://127.0.0.1:5000/testPage`, {
+      const response = await fetch(`https://incashbackend.herokuapp.com/testPage`, {
             method: "GET",
 
             headers: {
