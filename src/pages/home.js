@@ -32,7 +32,7 @@ function Home() {
     .then(res => {
         if (res.status >= 400) {
           window.localStorage.removeItem('id_token');
-          window.location.href = "https://incash.netlify.app/"
+          window.location.href = "https://incash.herokuapp.com//"
         }
         return res.json();
       })
@@ -80,7 +80,7 @@ function Home() {
         
       
         
-          window.location.href = "https://incash.netlify.app/"
+          window.location.href = "https://incash.herokuapp.com//"
           return
       }else{
       var localToken = window.localStorage.getItem('id_token');
@@ -94,7 +94,7 @@ function Home() {
       
     }else{
       window.localStorage.setItem('id_token',token)
-      window.location.href = "https://incash.netlify.app/home"
+      window.location.href = "https://incash.herokuapp.com//home"
     }
     
   },[])
