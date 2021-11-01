@@ -1,7 +1,8 @@
 import {React,useState,useEffect} from "react";
 import {useLocation} from "react-router-dom";
 import helloWave from "./img/hello_wave.svg";
-import Stats from '../classes/stats'
+import Stats from '../classes/stats';
+import Transactions from '../components/transactions';
 
 import "./stylesheets/home.css";
 
@@ -15,7 +16,8 @@ var invalidChars = [
 function Home() {
   const [name,setName] = useState('')
   const [budget,setBudget] = useState("");
-  const [BudgetPopupTabIndex,setBudgetPopupTabIndex] = useState(0)
+  const [BudgetPopupTabIndex,setBudgetPopupTabIndex] = useState(0);
+  const [token,setToken] = useState('');
 
   const [income,setIncome] = useState(0)
   const [saveGoal,setGoal] = useState(0)
@@ -32,7 +34,7 @@ function Home() {
     .then(res => {
         if (res.status >= 400) {
           window.localStorage.removeItem('id_token');
-          window.location.href = "https://incash.herokuapp.com/"
+          window.location.href = "http://localhost:3000/"
         }
         return res.json();
       })
@@ -50,7 +52,7 @@ function Home() {
   
   async function getBudget(token,setBudget){
   
-    const response = await fetch(`https://incashbackend.herokuapp.com/getBudget`, {
+    const response = await fetch(`http://127.0.0.1:5000/getBudget`, {
           method: "GET",
   
           headers: {
@@ -64,6 +66,8 @@ function Home() {
       const data = await response.json()
       try{
         setBudget(data[0]['income']);
+
+        
       }
       
       catch(err){
@@ -80,12 +84,12 @@ function Home() {
         
       
         
-          window.location.href = "https://incash.herokuapp.com/"
+          window.location.href = "http://localhost:3000/"
           return
       }else{
       var localToken = window.localStorage.getItem('id_token');
       
-
+      setToken(localToken);
       const res =  getUserDetails(localToken,setName,setBudget)
       .then(()=>{
         getBudget(localToken,setBudget);
@@ -94,7 +98,9 @@ function Home() {
       
     }else{
       window.localStorage.setItem('id_token',token)
-      window.location.href = "https://incash.herokuapp.com/home"
+      
+      setToken(token);
+      window.location.href = "http://localhost:3000/home"
     }
     
   },[])
@@ -115,18 +121,20 @@ function Home() {
     }
 
     function validateGoal(){
+      console.log(saveGoal,income)
       if(saveGoal>=income){
         setErr("Your saving goal can't be more than or equal to your income.")
         setTimeout(function(){ setErr('') }, 3000);
           return;
       }
       sendStats()
+      window.location.reload()
     }
     
     async function sendStats(){
       const statToSend = new Stats(window.localStorage.getItem('id_token'),income,saveGoal);
     
-      const response = await fetch(`https://incashbackend.herokuapp.com/setStats`, {
+      const response = await fetch(`http://127.0.0.1:5000/setStats`, {
             method: "POST",
     
             headers: {
@@ -150,12 +158,14 @@ function Home() {
       </div>
 
       
+      <Transactions token={token} />
       
     </div>
   );
   }else{
     return(
       <div className="Home">
+
       <Header></Header>
 
       <div id='remBudgetDIV'>
@@ -163,7 +173,7 @@ function Home() {
             <h2 className='remBudgetVal'>${budget}</h2>
       </div>
 
-      
+      <Transactions token={token} />
     
     <div id='setBudgetBackPop' style={{display: budget==0 ? 'flex' : 'none' }}>
         <div id='setBudgetPop' className='slide-in' >
@@ -214,6 +224,8 @@ function Home() {
 
         </div>
       </div>
+
+    
       </div>
     )
   }

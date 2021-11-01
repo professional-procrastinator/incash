@@ -5,7 +5,7 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta name="google-signin-client_id" content="860817227215-1rcn39thd32md7t7nt6bhb5qoo2s96p8.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="860817227215-0o3vi9p795m3fonk0hcfrmphvv71tbus.apps.googleusercontent.com">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
     <script>
@@ -70,7 +70,7 @@
     
 
     async function redirAndSend(token){
-      const response = await fetch(`https://incashbackend.herokuapp.com/testPage`, {
+      const response = await fetch(`http://127.0.0.1:5000/testPage`, {
             method: "GET",
 
             headers: {

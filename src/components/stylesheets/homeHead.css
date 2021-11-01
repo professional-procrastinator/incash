@@ -173,8 +173,11 @@
     background-color:#222222;
     margin-right:50px;
     display:flex;
-    flex-flow:column;
+    flex-flow:column wrap;
     border-radius: 5px;
+    -webkit-box-shadow: 3px 3px 4px 0px rgba(51,51,51,0.55);
+-moz-box-shadow: 3px 3px 4px 0px rgba(51,51,51,0.55);
+box-shadow: 3px 3px 4px 0px rgba(51,51,51,0.55);
 }
 
 #popupPfp{
@@ -241,4 +244,18 @@
 
 a{
     cursor: pointer;
+}
+
+#closePopupIcon{
+    position:absolute;
+    top:0;
+    right:0;
+    cursor:pointer;
+    
+}
+#somethn{
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-flow:column wrap;
 }

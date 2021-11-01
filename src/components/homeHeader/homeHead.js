@@ -1,5 +1,6 @@
 import SideNavBar from "../header/sidenav"
-import {React,useState,useEffect} from "react";
+import {React,useState,useEffect,useRef} from "react";
+import OutsideClickHandler from "react-outside-click-handler/build/OutsideClickHandler";
 import {
     BrowserRouter as Router,
     Switch,
@@ -10,7 +11,7 @@ import {
 
 import "../stylesheets/homeHead.css"
 
-import googleLogo from "../../pages/img/GLogo.svg"
+import closeIcon from "../../pages/img/closeIcon.svg"
 
 const Header = () => {
 
@@ -68,7 +69,6 @@ useEffect(()=>{
     
   },[])
     
-
     return(
         <Router>
         <header className='topHeader'>
@@ -116,22 +116,31 @@ useEffect(()=>{
                 
                
             </header>
-             
-            <div id='accountDiv' style={{opacity:accountPopupOpen?1:0}}>
-                
-                <img id='popupPfp' src={userImage}></img>
-                <h2 id='popupName'>{name}</h2>
-                <p id='popupEmail'>{email}</p>
 
-                <button id='popupLogoutBtn' onClick={(evt)=>{window.signOut()}}>Logout</button>
-                
-
-                <a id='popupLink' onClick={(evt)=>{alert('rukja page nahi banaya hai abhi ')}}>Your Account</a>
-                   
-                
+            
+            <div id='accountDiv' style={{display:accountPopupOpen?'flex':'none'}}>
+                        
+            <OutsideClickHandler onOutsideClick={()=>{setAccountPopupOpen(false)}}> 
+                    
+                    <div id='somethn'>
+                        <img id='popupPfp' src={userImage}></img>
+                    <h2 id='popupName'>{name}</h2>
+                    <p id='popupEmail'>{email}</p>
+            
+                    <button id='popupLogoutBtn' onClick={(evt)=>{window.signOut()}}>Logout</button>
+                        
+            
+                    <a id='popupLink' onClick={(evt)=>{alert('lmdao')}}>Your Account</a>
+                    </div>
+            </OutsideClickHandler>
+                        
             </div>
         </header>
         </Router>
     );
+    function getParentDiv(){ 
+        console.log(document.getElementById('popupPfp').parentElement);
+    }
+    getParentDiv();
 }
 export default Header;
