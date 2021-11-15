@@ -1,0 +1,449 @@
+body{
+    overflow-x: hidden;
+}
+
+#transactionHeading{
+    color:white;
+    font-family: 'Inter';
+    font-size: 30px;
+    font-weight: 300;
+}
+#mainTransactions{
+    padding-right: 100px;
+    padding-left:70px;
+}
+#transactionContainerDIV{
+    padding-left:75px;
+}
+
+.NameTrans{
+    font-weight: 500 !important;
+    color:white;
+    font-family: 'Inter';
+    font-size:19px;
+    
+}
+.amountTrans{
+    
+    font-family: 'Inter';
+    color:white;
+    font-family: 'Inter';
+    font-size:19px;
+    font-weight: 300;
+    margin-left:auto;
+    margin-top:auto;
+    margin-bottom:auto;
+}
+
+
+#transTextDIV{
+    display:flex;
+    padding-bottom: 9px;
+}
+#transactionContainerDIV{
+    padding-bottom:7.5px;
+    padding-top:7.5px;
+    padding-right:100px;
+}
+#transactionContainerDIV:hover{
+    background-color: #2222222d;
+    cursor:pointer;
+}
+#mainTransactions{
+    display:flex;
+}
+#mainTransactions svg{
+    margin-left:auto;
+    margin-top:auto;
+    margin-bottom: auto;
+}
+
+#addTransBtn{
+    font-size:30px;
+    transition: all 0.2s;
+    margin-top:auto;
+    margin-bottom: auto;
+    color:#32E965;
+    cursor:pointer;
+    font-size:24px;
+}
+#addTransBtn:hover{
+    transform: scale(1.15,1.15);
+}
+#searchTransBtn{
+    height:fit-content;
+    transition: all 0.2s;
+    margin-top:auto;
+    margin-bottom: auto;
+    width:fit-content;
+    margin-left:auto;
+    padding-right:14px;
+    color:#32E965;
+   cursor:pointer;
+}
+#searchTransBtn:hover{
+    transform: scale(1.15,1.15);
+}
+#transactionTabs{
+    display:flex;
+    margin:auto;
+    width:fit-content;
+    gap:10px;
+    padding-bottom: 20px;
+}
+.transaction-tab{
+    border-top-right-radius:4px;
+    border-top-left-radius: 4px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:10px;
+    transition:all 0.4s;
+    padding-bottom:10px;
+    color:white;
+    font-family: 'Inter';
+    cursor:pointer;
+    font-size:16px;
+    font-weight:500;
+    
+    border-bottom: 2px solid transparent;
+}
+#activeTransactionTab{
+    
+    border-bottom:2px solid rgb(57, 255, 57);
+}
+.transaction-tab:hover{
+    background-color:	rgba(36, 36, 36, 0.8);
+}
+
+.addTransPopupBack{
+    display:flex;
+    position: fixed; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    justify-content: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.582); /* Black w/ opacity */
+}
+#addTransPopup{
+    
+    
+    transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    background-color: rgb(32,32,32);
+    width:fit-content;
+    height:fit-content;
+    margin:auto;
+    font-family: 'Inter';
+    border-radius:5px;
+    padding-bottom: 20px;
+    z-index:20;
+    display:flex;
+    width:500px;
+}
+
+
+.slide-in {
+    animation: slide-in 0.5s forwards;
+    -webkit-animation: slide-in 0.5s forwards;
+}
+
+@keyframes slide-in {
+    100% { transform: translateX(0%); }
+}
+
+@-webkit-keyframes slide-in {
+    100% { -webkit-transform: translateX(0%); }
+}
+
+.slide-in-2 {
+    animation: slide-in-2 0.5s forwards;
+    -webkit-animation: slide-in-2 0.5s forwards;
+}
+
+@keyframes slide-in-2 {
+    100% { transform: translateX(0%); }
+}
+
+@-webkit-keyframes slide-in-2 {
+    100% { -webkit-transform: translateX(0%); }
+}
+
+#transactionPopupHeading{
+    margin: auto;
+    width:fit-content;
+    color:#45FF4C;
+    font-weight:300;
+    margin-top:20px;
+    margin-bottom: 10px;
+}
+
+#transactionTabs{
+    margin:auto;
+    width:fit-content;
+}
+
+#tabExpense{
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+}
+
+.addTransPopupInput{
+    background-color:#1A1A1A;
+    padding-top:15px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    border:none;
+    outline:none;
+    border-radius: 4px;
+    width:80%;
+    caret-color: white;
+    color:white;
+    font-family: Inter;
+    padding-right: 20px;
+    margin:auto;
+}
+#addTransInputDiv{
+    display: flex;
+    flex-flow: column;
+    margin: auto;
+    gap: 14px;
+    width: 100%;
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    
+    cursor:pointer;
+}
+#addTransInputDetails{
+    min-width:80%;
+    max-width: 80%;
+    min-height: 56px;
+    max-height:83px;
+}
+
+#addTransPopupBottomRow{
+    display:flex;
+    padding-top:15px;
+    padding-left:31px;
+    
+    padding-right:31px;
+}
+
+#addTransPopupBottomRow a{
+    font-size:14px;
+    margin-top:auto;
+    margin-bottom: auto;
+    color:#6DDF51;
+}
+
+.addTransPopupButton{
+    user-select: none;
+    transition:all 0.4s;
+    border-radius: 4px;
+    border:none;
+    outline:none;
+    width:90px;
+    padding-top:8px;
+    padding-bottom:8px;
+    font-family: 'Inter';
+    color:white;
+    cursor: pointer;
+}
+#cancelButton{
+    
+    color:#34FD54;
+    background-color:	rgb(81, 81, 81,0.60)
+}
+#cancelButton:hover{
+    background-color:rgb(73, 73, 73);
+}
+
+#saveButton{
+    
+    background-color:	rgb(52, 253, 84,0.60)
+}
+#saveButton:hover{
+    background-color:rgb(25, 149, 25);
+}
+#addTransPopupButtonRow{
+    gap:13px;
+    display:flex;
+    margin-left:auto;
+    width:fit-content;
+}
+
+.dateTrans{
+    color:#8d8d8d;
+    font-size:14px;
+    font-family: 'Inter';
+}
+
+#mainTabExpenseDiv{
+    width:500px;
+}
+
+#transSortBySelect{
+    
+    font-size:18px;
+    background-color:#1A1A1A;
+    padding-top:7px;
+    padding-bottom: 7px;
+    padding-left: 10px;
+    border:none;
+    outline:none;
+    border-radius: 4px;
+    width:fit-content;
+    caret-color: white;
+    color:rgb(255, 247, 247);
+    font-family: Inter;
+    padding-right: 20px;
+    margin-left:auto;
+    height:fit-content;
+    margin-top:auto;
+    margin-bottom: auto;
+    margin-right:1.5rem;
+}
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Some browsers will not display the caret when using calc, so we put the fallback first */ 
+    
+    background: url("../img/downArrow.svg") #1C1D1C no-repeat 98.5% !important; /* !important used for overriding all other customisations */
+    background: url("../img/downArrow.svg") #1C1D1C no-repeat calc(100% - 8px) !important; /* Better placement regardless of input width */
+  }
+
+option{
+    color:rgb(226, 226, 226);
+    background-color:rgb(36, 36, 36);
+    
+    padding:20px;
+}
+option:hover{
+    background-color:rgb(36, 26, 24);
+}
+
+
+
+
+#transactionDetailPopup{
+    font-family:'Inter';
+    width:478px;
+    flex-flow:column wrap;
+    height:fit-content;
+    margin:auto;
+    background-color:#1f1f1f;
+    border-radius: 4px;
+    color:white;
+}
+.transactionDetailPopupTopRow{
+    display:flex;
+    padding-bottom:12px;
+}
+#closePopupBtn{
+    width:3.3px;
+    height:6.67px;
+    font-size:15px;
+    margin-left:auto;
+    margin-bottom:auto;
+    margin-top:auto;
+    padding-top:5.5px;
+    padding-right:22px;
+    cursor:pointer;
+    transition:all 0.2s;
+    color:var(--jungleGreen);
+}
+#closePopupBtn:hover{
+    
+    color:var(--appleRed);
+}
+
+.popupTopRowHeading{
+    font-size:15px;
+    font-family: 'Inter';
+    margin-bottom:auto;
+    margin-right:auto;
+    color:#949292;
+    padding-left:13px;
+}
+
+#popupSeparator{
+    
+    width:100%;
+    background-color: rgb(57,57,57);
+    height:1px;
+}
+
+.transactionPopupHeading{
+    font-weight: 400;
+    font-size:30px;
+    height:fit-content;
+    width:fit-content;
+    margin-right:auto;
+    margin-left:auto;
+}
+.transactionPopupAmount{
+    margin-top:5%;
+    font-size:24px;
+    width:fit-content;
+    margin-right:auto;
+    margin-left:auto;
+}
+
+.transactionPopupDate{
+    color:var(--lightestGray);
+    margin-top:-4.4%;
+}
+
+.transactionPopupDetails{
+    color:var(--lightestGray);
+    margin-top:-1%;
+}
+
+
+.popupBottomRow{
+    padding-bottom: 7px;
+    margin-top:auto;
+    padding-right:10px;
+    padding-top:13px;
+    display:flex;
+}
+
+#editTransactionBtn{
+    color:var(--jungleGreen);
+    font-size:19px;
+    padding-right:10px;
+    transition:all 0.3s;
+    cursor: pointer;
+    margin-left: auto;
+}
+#deleteTransactionBtn{
+    
+    width:fit-content;
+    transition:all 0.4s;
+    color:var(--jungleGreen);
+    font-size:19px;
+    cursor: pointer;
+}
+#editTransactionBtn:hover{
+    color:var(--appleRed);
+}
+#deleteTransactionBtn:hover{
+    color:var(--appleRed);
+}
+
+#settingsTransactionBtn{
+    color:var(--jungleGreen);
+    font-size:19px;
+    transition:all 0.3s;
+    cursor: pointer;
+    padding-left:10px;
+}
+#settingsTransactionBtn:hover{
+    color:var(--appleRed);
+}

@@ -30,7 +30,7 @@ async function getUserDetails(token){
     .then(res => {
         if (res.status >= 400) {
           window.localStorage.removeItem('id_token');
-          window.location.href = "https://incash.herokuapp.com//"
+          window.location.href = "http://localhost:3000"
         }
         return res.json();
       })
@@ -64,10 +64,10 @@ useEffect(()=>{
       
     }else{
       window.localStorage.setItem('id_token',token)
-      window.location.href = "https://incash.herokuapp.com//home"
+      window.location.href = "http://localhost:3000/home"
     }
     
-  },[])
+  })
     
     return(
         <Router>
@@ -85,13 +85,14 @@ useEffect(()=>{
                 </div>
 
                 <div className='navLinks'>
-                    <h2 className='headerLinks' id='activeTabLink'>
-                        <Link to="/" style={{textDecoration:'none',color:'black'}}>
+                    
+                    <h2 className='headerLinks' id={window.location.href.includes('home')?"activeTabLink":''}>
+                        <Link to="/"  onClick={(evt)=>{window.location.href = "home"}}style={{textDecoration:'none',color:'black'}}>
                             Home
                         </Link>
                     </h2>
-                    <h2 className='headerLinks'>
-                        <Link to="/" style={{textDecoration:'none',color:'black'}}>
+                    <h2 className='headerLinks'  id={window.location.href.includes('transactions')?"activeTabLink":''}>
+                        <Link to="/"  onClick={(evt)=>{window.location.href = "transactions"}} style={{textDecoration:'none',color:'black'}}>
                             Transactions
                         </Link>
                     </h2>
@@ -138,9 +139,6 @@ useEffect(()=>{
         </header>
         </Router>
     );
-    function getParentDiv(){ 
-        console.log(document.getElementById('popupPfp').parentElement);
-    }
-    getParentDiv();
+
 }
 export default Header;

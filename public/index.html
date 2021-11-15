@@ -8,10 +8,12 @@
     <meta name="google-signin-client_id" content="860817227215-0o3vi9p795m3fonk0hcfrmphvv71tbus.apps.googleusercontent.com">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
     <script>
       function onSignIn(googleUser) {
           var id_token = googleUser.getAuthResponse().id_token;
-
+          
           
           redirAndSend(id_token);
        
@@ -27,7 +29,7 @@
         var auth2 = gapi.auth2.getAuthInstance();
         auth2.disconnect()
         auth2.signOut().then(function () {
-          location.href = "https://incash.herokuapp.com/"
+          location.href = "http://localhost:3000"
         });
       }
     </script>

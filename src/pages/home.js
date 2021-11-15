@@ -16,6 +16,7 @@ var invalidChars = [
 function Home() {
   const [name,setName] = useState('')
   const [budget,setBudget] = useState("");
+  const [isBudgetPopupOpen,setBudgetPopupOpen] = useState(false);
   const [BudgetPopupTabIndex,setBudgetPopupTabIndex] = useState(0);
   const [token,setToken] = useState('');
 
@@ -65,7 +66,7 @@ function Home() {
   
       const data = await response.json()
       try{
-        setBudget(data[0]['income']);
+        setBudget(data[0]['remainingBudget']);
 
         
       }
@@ -74,7 +75,13 @@ function Home() {
         
       }
   }
-  
+  useEffect(()=>{
+    if(budget === 0){
+      setBudgetPopupOpen(true)
+    }else{
+      return;
+    }
+  },[budget])
 
   useEffect(()=>{
     const token = urlParams.get('auth');
@@ -100,7 +107,7 @@ function Home() {
       window.localStorage.setItem('id_token',token)
       
       setToken(token);
-      window.location.href = "http://localhost:3000/home"
+      window.location.href = "home"
     }
     
   },[])
@@ -133,7 +140,7 @@ function Home() {
     
     async function sendStats(){
       const statToSend = new Stats(window.localStorage.getItem('id_token'),income,saveGoal);
-    
+      console.log(statToSend)
       const response = await fetch(`http://127.0.0.1:5000/setStats`, {
             method: "POST",
     
@@ -148,7 +155,7 @@ function Home() {
     }
     
   
-   if(budget!=0){return (
+return (
     <div className="Home">
       <Header></Header>
 
@@ -158,24 +165,11 @@ function Home() {
       </div>
 
       
-      <Transactions token={token} />
       
-    </div>
-  );
-  }else{
-    return(
-      <div className="Home">
-
-      <Header></Header>
-
-      <div id='remBudgetDIV'>
-            <h2 className='remBudgetHead'>Remaining Budget</h2>
-            <h2 className='remBudgetVal'>${budget}</h2>
-      </div>
-
-      <Transactions token={token} />
     
-    <div id='setBudgetBackPop' style={{display: budget==0 ? 'flex' : 'none' }}>
+    <Transactions />
+    
+    <div id='setBudgetBackPop' style={{display: isBudgetPopupOpen ? 'flex' : 'none' }}>
         <div id='setBudgetPop' className='slide-in' >
           <div id='tab1' className='slide-in-2'  style={{display:BudgetPopupTabIndex==0 ? 'flex':'none'}}>
             <div id='popupImgText'>
@@ -223,20 +217,16 @@ function Home() {
 
 
         </div>
-      </div>
+    </div>
 
-    
-      </div>
-    )
-  }
+  </div>
+)
+} 
   
-}
-
-
 
 
 
 export default Home;
 
-// <input className='setStatsInput' placeholder="Saving Goal" type='number' onInput={(evt)=>{evt.target.value = evt.target.value.replace(/[e\+\-]/gi, "")}} onKeyDown={(evt)=>{if (invalidChars.includes(evt.key)) {evt.preventDefault();}}}/>
+
 

@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Landing from "./pages/landing"
 import Home from "./pages/home"
+import Transactions from "./pages/transactions"
 
 
 function App() {
@@ -20,8 +21,10 @@ function App() {
           <Route path="/home">
             <Home />
           </Route>
-          
-        </Switch>
+          <Route path="/transactions">
+            <Transactions />
+          </Route>
+      </Switch>
     </Router>
   );
 }
